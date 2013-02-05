@@ -1,0 +1,36 @@
+{
+    "name"          : "jibhaine/engin",
+    "description"   : "A site / template generation enginebased on Slim, Twig, Assetic and PHPActiveRecord",
+    "homepage"      : "http://www.jerzual.io/simula",
+    "version"       : "0.1.0",
+    "authors"       :
+            [
+                {
+                    "name"      : "Benjamin Legrand",
+                    "email"     : "benjamin.legrand@jerzual.com",
+                    "homepage"  : "http://www.jerzual.com/"
+                }
+            ],
+    "minimum-stability":"dev",
+    "require":
+    {
+        "slim/slim"     : "2.*",
+        "slim/extras"  : "2.*",
+        "slim/strong": "dev-master",
+        "twig/twig"    : "1.*",
+        "kriswallsmith/assetic": "1.1.*@dev",
+        "leafo/lessphp": "v0.3.8",
+        "php-activerecord/php-activerecord": "dev-master",
+        "underscore/Underscore.php": "dev-master",
+        "dflydev/markdown": "v1.0.2"
+    },
+    "require-dev":
+    {
+        "apigen/apigen" : "2.8.*" ,
+        "mockery/mockery": "0.7.2",
+        "phpunit/phpunit"  : "3.7.*@stable",
+        "phpunit/phpunit-selenium": "1.*",
+        "phpunit/phpunit-dbunit": "1.*",
+        "phpunit/phpunit-story": "1.*"
+    }
+}
