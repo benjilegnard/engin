@@ -3,11 +3,16 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "start": "node engin.js"
+        "start": "node app/engin.js"
     },
     "dependencies": {
-        "express": "3.2.1",
-        "hbs": "*",
-        "less-middleware": "*"
+        "express": "3.x",
+        "jade": "*",
+        "less-middleware": "*",
+        "connect":"*",
+        "sequelize":"*",
+        "sequelize-postgres":"*",
+        "pg":"~0.10.2",
+        "sequelize-restful":"*"
     }
 }
