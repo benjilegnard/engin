@@ -1,79 +1,126 @@
-var express   = require('express')
-    , Sequelize = require('sequelize')
-    , http      = require('http')
-    , restful   = require('sequelize-restful')
-    , sequelize = new Sequelize('engin', 'engin', 'engin')
-    , app       = express()
+var express = require('express')
+    , http = require('http')
+    , path = require('path')
+
+//  , oauth      = require('oauth')
+//, restful = require('sequelize-restful')
+    , models = require('./models')
+    , app = require('express')()
+    , server = http.createServer(app);
+//  , io = require('socket.io');
+
+
+
+// all environments
+app.set('port', port = process.env.PORT || 3000);
+
+//view directory
+app.set('views', __dirname + '/views');
+
+//view directory
+app.set('views', __dirname + '/views');
+
+//handlebars .html views
+app.set('view engine', 'jade');
+app.engine('jade', require('jade').__express);
+
+//app.use(express.favicon());
+app.use(express.logger('dev'));
+app.use(express.bodyParser());
+app.use(express.methodOverride());
+app.use(express.cookieParser('your secret here'));
+app.use(express.session());
+app.use(app.router);
+app.use(models);
+//less to css automatic compilatin
+app.use(require('less-middleware')({ src:__dirname + '/public' }));
+//static resources
+app.use(express.static(path.join(__dirname, 'public')));
 
 // define all your models before the configure block
+/*
+ app.configure(function() {
+ app.use(restful(sequelize, {
 
-app.configure(function() {
-    app.use(restful(sequelize, { /* options */ }))
-});
+ }))
+ });
+ */
 
-http.createServer(app).listen(app.get('port'), function(){
+// development only
+if ('development' == app.get('env')) {
+    app.use(express.errorHandler());
+}
+/*
+ //html files
+ app.get('/', routes.index);
+
+ //rest api
+ app.get('/users', user.list);
+ */
+
+http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'))
 });
-    /*
-var sequelize = new Sequelize('database', 'username', 'password', {
-    // custom host; default: localhost
-    host: 'my.server.tld',
+/*
+ var sequelize = new Sequelize('database', 'username', 'password', {
+ // custom host; default: localhost
+ host: 'my.server.tld',
 
-    // custom port; default: 3306
-    port: 12345,
+ // custom port; default: 3306
+ port: 12345,
 
-    // custom protocol
-    // - default: 'tcp'
-    // - added in: v1.5.0
-    // - postgres only, useful for heroku
-    protocol: null,
+ // custom protocol
+ // - default: 'tcp'
+ // - added in: v1.5.0
+ // - postgres only, useful for heroku
+ protocol: null,
 
-    // disable logging; default: console.log
-    logging: false,
+ // disable logging; default: console.log
+ logging: false,
 
-    // max concurrent database requests; default: 50
-    maxConcurrentQueries: 100,
+ // max concurrent database requests; default: 50
+ maxConcurrentQueries: 100,
 
-    // the sql dialect of the database
-    // - default is 'mysql'
-    // - currently supported: 'mysql', 'sqlite', 'postgres'
-    dialect: 'mysql',
+ // the sql dialect of the database
+ // - default is 'mysql'
+ // - currently supported: 'mysql', 'sqlite', 'postgres'
+ dialect: 'mysql',
 
-    // the storage engine for sqlite
-    // - default ':memory:'
-    storage: 'path/to/database.sqlite',
+ // the storage engine for sqlite
+ // - default ':memory:'
+ storage: 'path/to/database.sqlite',
 
-    // disable inserting undefined values as NULL
-    // - default: false
-    omitNull: true,
+ // disable inserting undefined values as NULL
+ // - default: false
+ omitNull: true,
 
-    // Specify options, which are used when sequelize.define is called.
-    // The following example:
-    //   define: {timestamps: false}
-    // is basically the same as:
-    //   sequelize.define(name, attributes, { timestamps: false })
-    // so defining the timestamps for each model will be not necessary
-    // Below you can see the possible keys for settings. All of them are explained on this page
-    define: {
-        underscored: false,
-        freezeTableName: false,
-        syncOnAssociation: true,
-        charset: 'utf8',
-        collate: 'utf8_general_ci',
-        classMethods: {method1: function() {}},
-        instanceMethods: {method2: function() {}},
-        timestamps: true
-    },
+ // Specify options, which are used when sequelize.define is called.
+ // The following example:
+ //   define: {timestamps: false}
+ // is basically the same as:
+ //   sequelize.define(name, attributes, { timestamps: false })
+ // so defining the timestamps for each model will be not necessary
+ // Below you can see the possible keys for settings. All of them are explained on this page
+ define: {
+ underscored: false,
+ freezeTableName: false,
+ syncOnAssociation: true,
+ charset: 'utf8',
+ collate: 'utf8_general_ci',
+ classMethods: {method1: function() {}},
+ instanceMethods: {method2: function() {}},
+ timestamps: true
+ },
 
-    // similiar for sync: you can define this to always force sync for models
-    sync: { force: true },
+ // similiar for sync: you can define this to always force sync for models
+ sync: { force: true },
 
-    // sync after each association (see below). If set to false, you need to sync manually after setting all associations. Default: true
-    syncOnAssociation: true    ,
+ // sync after each association (see below). If set to false, you need to sync manually after setting all associations. Default: true
+ syncOnAssociation: true    ,
 
-    // use pooling in order to reduce db connection overload and to increase speed
-    // currently only for mysql and postgresql (since v1.5.0)
-    pool: { maxConnections: 5, maxIdleTime: 30}
-});
+ // use pooling in order to reduce db connection overload and to increase speed
+ // currently only for mysql and postgresql (since v1.5.0)
+ pool: { maxConnections: 5, maxIdleTime: 30}
+ });
 
-        */
+ */
