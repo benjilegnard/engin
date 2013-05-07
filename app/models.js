@@ -134,15 +134,16 @@
 
 
     // UPDATE / SYNCHRONIZATION
+    /*
+     sequelize.sync().success(function (hey) {
+     // woot woot
+     logger.info("Sucessful sync of the database" + hey)
+     }).error(function (error) {
+     // whooops
+     logger.error(error);
 
-    sequelize.sync().success(function (hey) {
-        // woot woot
-        logger.info("Sucessful sync of the database" + hey)
-    }).error(function (error) {
-            // whooops
-            logger.error(error);
-        });
-
+     });
+     */
     module.exports = models;
 
 

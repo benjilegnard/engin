@@ -1,21 +1,27 @@
 var express = require('express')
+    , fs = require('fs')
+    , config = require('config')
     , http = require('http')
     , path = require('path')
+    , log4js = require('log4js')
 
 //  , oauth      = require('oauth')
-//, restful = require('sequelize-restful')
+    , restful = require('sequelize-restful')
     , models = require('./models')
     , app = require('express')()
     , server = http.createServer(app);
 //  , io = require('socket.io');
 
 
+log4js.configure({
+    appenders:[
+        { type:'console' },
+        { type:'file', filename:'logs/engin.log', category:'global' }
+    ]
+});
 
 // all environments
 app.set('port', port = process.env.PORT || 3000);
-
-//view directory
-app.set('views', __dirname + '/views');
 
 //view directory
 app.set('views', __dirname + '/views');
@@ -46,10 +52,24 @@ app.use(express.static(path.join(__dirname, 'public')));
  });
  */
 
-// development only
-if ('development' == app.get('env')) {
+allowCrossDomain = function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    return next();
+};
+app.configure('development', function () {
+    app.use(express.errorHandler({
+        dumpExceptions:true,
+        showStach:true
+    }));
+    //return database_options.logging = true;
+});
+
+app.configure('production', function () {
     app.use(express.errorHandler());
-}
+    //return database_options.logging = false;
+});
 /*
  //html files
  app.get('/', routes.index);

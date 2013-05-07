@@ -10,6 +10,8 @@
         "jade":"*",
         "less-middleware":"*",
         "connect":"*",
+        "yaml":"*",
+        "config":"*",
         "log4js":"*",
         "pg":"~0.10.2",
         "sequelize":"*",
