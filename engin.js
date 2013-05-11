@@ -77,10 +77,8 @@ app.configure('production', function () {
 app.get('/', routes.index);
 
 app.get('/projects', routes.index);
-app.get('/code', routes.index);
-app.get('/edit', routes.index);
-app.get('/test', routes.index);
-app.get('/build', routes.index);
+app.get('/coder', routes.coder.index);
+app.get('/writer', routes.writer.index);
 app.get('/fiddler', routes.fiddler.index);
 app.get('/name', function (req, res) {
     res.json({name:'Bob'})

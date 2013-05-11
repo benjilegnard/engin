@@ -11,7 +11,26 @@ html
     link(rel='stylesheet', href='/css/engin.css')
     link(rel='stylesheet', href='/css/font-awesome.css')
     script(src='js/libs/modernizr/modernizr.js')
-  body
+  body(ng-app='engin')
+
+    #menu.fixed
+      .row.navbar
+        a.logo(href='#')
+          i.icon-cog
+          | Engin
+        ul.nav
+          li
+            a(href='coder')
+              i.icon-code
+              | Code
+          li
+            a(href='fiddler')
+              i.icon-edit
+              | Edit
+          li
+            a(href='writer')
+              i.icon-cog
+              | Review
     block body
 
     block scripts
