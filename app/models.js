@@ -13,7 +13,7 @@
      * models namespace .
      * @type {*}
      */
-    var models = { };
+    var models = {User:{}, Folder:{}, Document:{}, Rendition:{}, Repository:{}};
 
     models.User = sequelize.define('User', {
         id:{ type:Sequelize.INTEGER, primaryKey:true, autoIncrement:true },
@@ -65,7 +65,6 @@
         url:Sequelize.STRING
 
     });
-
     // FOLDER
     models.Folder = sequelize.define('Folder', {
 

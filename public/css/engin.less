@@ -1,0 +1,83 @@
+@import "variables.less";
+@import "mixins.less";
+@import "base.less";
+@import "skeleton.less";
+@import "layout.less";
+
+body, html {
+    width: 100%;
+    height: 100%;
+    font-family: 'Source Code Pro', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, #menu .logo {
+    font-family: 'Quicksand', sans-serif;
+}
+
+#page {
+    margin-top: 30px;
+    &.index {
+
+    }
+    .coder {
+
+    }
+    .fiddler {
+
+    }
+    .writer {
+
+    }
+}
+
+#menu {
+    background: black;
+    .drop-shadow();
+    height: 30px;
+    .row {
+
+    }
+    .logo {
+        font-size: 26px;
+        line-height: 1;
+        padding: 2px;
+        color: orange;
+        text-decoration: none;
+        position: absolute;
+
+    }
+    a {
+        line-height: 30px;
+    }
+    ul {
+        text-align: right;
+        li {
+            display: inline;
+            a {
+                color: white;
+                padding: 2px 4px;
+                border-right: dashed 1px white;
+            }
+            a:last-child {
+                border-right-width: 0;
+            }
+        }
+    }
+}
+
+#breadcrumbs {
+
+}
+
+#menu {
+
+}
+
+#folders {
+    background-color: #333;
+}
+
+#content {
+    background-color: #FFF;
+
+}

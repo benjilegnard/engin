@@ -6,8 +6,10 @@ var express = require('express')
     , log4js = require('log4js')
 
 //  , oauth      = require('oauth')
+    , Sequelize = require('sequelize-postgres')
     , restful = require('sequelize-restful')
-    , models = require('./models')
+    , models = require('./app/models')
+    , routes = require('./app/routes')
     , app = require('express')()
     , server = http.createServer(app);
 //  , io = require('socket.io');
@@ -21,7 +23,7 @@ log4js.configure({
 });
 
 // all environments
-app.set('port', port = process.env.PORT || 3000);
+app.set('port', port = process.env.PORT || 5000);
 
 //view directory
 app.set('views', __dirname + '/views');
@@ -44,13 +46,13 @@ app.use(require('less-middleware')({ src:__dirname + '/public' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // define all your models before the configure block
-/*
- app.configure(function() {
- app.use(restful(sequelize, {
 
- }))
- });
- */
+app.configure(function () {
+    app.use(restful(Sequelize, {
+
+    }))
+});
+
 
 allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
@@ -70,13 +72,31 @@ app.configure('production', function () {
     app.use(express.errorHandler());
     //return database_options.logging = false;
 });
-/*
- //html files
- app.get('/', routes.index);
 
- //rest api
- app.get('/users', user.list);
- */
+//html files
+app.get('/', routes.index);
+
+app.get('/projects', routes.index);
+app.get('/code', routes.index);
+app.get('/edit', routes.index);
+app.get('/test', routes.index);
+app.get('/build', routes.index);
+app.get('/fiddler', routes.fiddler.index);
+app.get('/name', function (req, res) {
+    res.json({name:'Bob'})
+});
+
+//partials for angular
+app.get('/partial/:name', function (req, res) {
+    var name = req.params.name;
+    res.render('partials/' + name);
+});
+app.get('/js/libs', function (req, res) {
+
+});
+//rest api
+//app.get('/users', user.list);
+
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'))

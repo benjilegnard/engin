@@ -1,0 +1,44 @@
+extends layout
+
+block body
+
+  #menu.fixed
+    .row.navbar
+      a.logo(href='#')
+        i.icon-cog
+        | Engin
+      ul.nav
+        li
+          a(href='view1') Code
+        li
+          a(href='view1') Edit
+        li
+          a(href='view2') Review
+  #page.container
+    .row(ng-controller='IndexCtrl')
+      p.hero-unit
+        i(class='icon-quote-left icon-4x pull-left icon-muted')
+        | Welcome my friend, welcome to the Engin.
+      div(ng-view)
+    hr
+    .row.clearfix
+      .four.columns.alpha
+        h2 Code
+        p Edit remote code in your browser, show code changes live.
+      .four.columns
+        h2 Review
+        p Live Preview and html editor.
+      .four.columns.omega
+        h2 Test
+        p Live test your code
+      .four.columns.omega
+        h2 Build
+
+    footer
+      img(src='media/images/engin-logo.png') | v
+      span(app-version)
+
+  script(src='js/lib/jquery-1.9.1.js')
+  script(src='js/lib/jquery-ui-1.9.1.custom.min.js')
+  script(src='js/lib/ui-bootstrap-0.3.0.js')
+  script(src='js/lib/ui-bootstrap-tpls-0.3.0.js')

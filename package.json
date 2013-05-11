@@ -1,23 +1,51 @@
 {
     "name":"engin",
-    "version":"0.0.1",
+    "version":"0.0.0",
     "private":true,
     "scripts":{
-        "start":"node app/engin.js"
+        "start":"node engin.js"
     },
     "dependencies":{
         "express":"3.x",
         "jade":"*",
         "less-middleware":"*",
         "connect":"*",
-        "yaml":"*",
-        "config":"*",
         "log4js":"*",
         "pg":"~0.10.2",
         "sequelize":"*",
         "sequelize-postgres":"*",
         "sequelize-authentication":"*",
-        "sequelize-restful":"*",
-        "sequelize-admin":"*"
+        "sequelize-restful":"*"
+    },
+    "devDependencies":{
+        "mocha":"",
+        "request":"",
+        "should":"",
+        "chai":"",
+        "grunt":"~0.4.1",
+        "grunt-contrib-copy":"~0.4.0",
+        "grunt-contrib-concat":"~0.2.0",
+        "grunt-contrib-coffee":"~0.6.6",
+        "grunt-contrib-jst":"~0.5.0",
+        "grunt-contrib-uglify":"~0.2.0",
+        "grunt-contrib-compass":"~0.2.0",
+        "grunt-contrib-jshint":"~0.4.3",
+        "grunt-contrib-cssmin":"~0.6.0",
+        "grunt-contrib-connect":"0.3.0",
+        "grunt-contrib-clean":"0.4.0",
+        "grunt-contrib-htmlmin":"0.1.3",
+        "grunt-contrib-imagemin":"0.1.4",
+        "grunt-contrib-livereload":"0.1.2",
+        "grunt-mocha":"~0.3.1",
+        "grunt-bower-requirejs":"~0.4.1",
+        "grunt-usemin":"~0.1.10",
+        "grunt-requirejs":"~0.3.5",
+        "grunt-regarde":"~0.1.1",
+        "grunt-open":"~0.2.0",
+        "matchdep":"~0.1.2"
+    },
+    "engines":{
+        "node":"0.10.x",
+        "npm":"1.2.x"
     }
 }
