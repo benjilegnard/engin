@@ -1,6 +1,5 @@
 var express = require('express')
     , fs = require('fs')
-    , config = require('config')
     , http = require('http')
     , path = require('path')
     , log4js = require('log4js')
