@@ -76,10 +76,11 @@ app.configure('production', function () {
 app.get('/', routes.index);
 
 app.get('/projects', routes.index);
-app.get('/coder', routes.coder.index);
-app.get('/writer', routes.writer.index);
-app.get('/fiddler', routes.fiddler.index);
-app.get('/name', function (req, res) {
+app.get('/coder', routes.coder);
+app.get('/writer', routes.writer);
+app.get('/fiddler', routes.fiddler);
+
+app.get('/api/name', function (req, res) {
     res.json({name:'Bob'})
 });
 

@@ -12,6 +12,7 @@ body, html {
 
 h1, h2, h3, h4, h5, h6, #menu .logo {
     font-family: 'Quicksand', sans-serif;
+    .font-smoothing();
 }
 
 #page {
@@ -32,6 +33,7 @@ h1, h2, h3, h4, h5, h6, #menu .logo {
 
 #menu {
     background: black;
+    .gradient(#222,#222,#444);
     .drop-shadow();
     height: 30px;
     .row {
@@ -53,11 +55,35 @@ h1, h2, h3, h4, h5, h6, #menu .logo {
         text-align: right;
         li {
             display: inline;
-            a {
-                color: white;
-                padding: 2px 4px;
+            a
+            {
+                color: #DDDDDD;
+                padding: 6px 10px;
                 border-right: dashed 1px white;
+                position:relative;
+                &:hover
+                {
+                  color:#ffffff;
+                }
+                &.active,
+                &:active
+                {
+                  .gradient(#222,#444,#222);
+                }
+                  &:active:after,
+                  &.active:after{
+                  display:block;
+                    content:'.';
+                  width:0;
+                  height:0;
+                  border-width:6px;
+                  border-style: solid;
+                  border-color:transparent transparent white transparent;
+                  position:absolute;
+                  left:50%;bottom:-4px;
+                }
             }
+
             a:last-child {
                 border-right-width: 0;
             }

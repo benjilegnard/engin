@@ -10,7 +10,7 @@ html
     link(href='http://fonts.googleapis.com/css?family=Quicksand|Source+Code+Pro', rel='stylesheet', type='text/css')
     link(rel='stylesheet', href='/css/engin.css')
     link(rel='stylesheet', href='/css/font-awesome.css')
-    script(src='js/libs/modernizr/modernizr.js')
+    script(src='/js/libs/modernizr.js')
   body(ng-app='engin')
 
     #menu.fixed
@@ -34,3 +34,4 @@ html
     block body
 
     block scripts
+      script(data-main='/js/main.js',src='/js/libs/require.js')
