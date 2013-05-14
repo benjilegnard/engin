@@ -11,14 +11,23 @@ angular.module('Engin.controllers', [])
                 $scope.name = 'Error!'
             });
     }
-).controller('WriterCtrl',function(){
+).controller('WriterCtrl',function($scope,$resource){
 
     }
-).controller('CoderCtrl',function(){}
+).controller('CoderCtrl',function(){
+
+    }
 ).controller('MenuCtrl',function(){
 
     }
-).controller('FiddleCtrl',function(){});
+).controller('FiddleCtrl',function($scope){
+        $scope.fiddle = {
+            html : [],
+            css : [],js : [],
+            cssLibs : [],
+            jsLibs : []
+        };
+    });
 
 function MyCtrl1() {}
 MyCtrl1.$inject = [];
