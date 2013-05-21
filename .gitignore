@@ -5,3 +5,5 @@ dist
 logs/
 .sass-cache
 .tmp/
+.idea/
+*.iml
