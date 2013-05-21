@@ -1,5 +1,5 @@
 !!!
-html
+html(lang='en',ng-app='engin')
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible',content='IE=edge,chrome=1')
@@ -10,8 +10,7 @@ html
     link(href='http://fonts.googleapis.com/css?family=Quicksand|Source+Code+Pro', rel='stylesheet', type='text/css')
     link(rel='stylesheet', href='/css/engin.css')
     link(rel='stylesheet', href='/css/font-awesome.css')
-    script(src='/js/libs/modernizr.js')
-  body(ng-app='engin')
+  body
 
     #menu.fixed
       .row.navbar
@@ -34,4 +33,4 @@ html
     block body
 
     block scripts
-      script(data-main='/js/main.js',src='/js/libs/require.js')
+      script(data-main='/js/engin.js',src='/js/libs/require.js')
