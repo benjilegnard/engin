@@ -88,8 +88,23 @@ app.get('/partial/:name', function (req, res) {
     var name = req.params.name;
     res.render('partials/' + name);
 });
-app.get('/js/libs', function (req, res) {
-
+//resources loaded from bower dir
+app.get('/js/libs/:file', function(req, res){
+    var file = req.params.file,
+        filePath = path.join(__dirname,'/bower_components/',file,'.js');
+    var fileExists =
+        fs.exists(
+            filePath,
+            function(err,data){
+                if(err) res.send(500,err);
+                else res.send(data);
+            }
+        );
+    if (fileExists) {
+        res.sendfile('/uploads/' + uid + '/' + file);
+    } else {
+        res.send(403, 'Sorry! you cant see that.');
+    }
 });
 //rest api
 //app.get('/users', user.list);
