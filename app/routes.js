@@ -1,21 +1,13 @@
 exports.index = function (req, res, next) {
-    res.render('index');
+        res.render('index');
 };
 
-exports.fiddler = {
-    index:function (req, res, next) {
+exports.fiddler = function (req, res, next) {
         res.render('fiddler');
-    }
 };
-exports.coder = {
-
-    index:function (req, res, next) {
+exports.coder = function (req, res, next) {
         res.render('coder');
-    }
 };
-exports.writer = {
-
-    index:function (req, res, next) {
+exports.writer = function (req, res, next) {
         res.render('writer');
-    }
 };
