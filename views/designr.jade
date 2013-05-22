@@ -1,0 +1,27 @@
+extends layout.jade
+
+block toolbar
+    li
+      a(href='#new/diagram') New Diagram...
+    li
+      a(href='#new/diagram:usecase') New Use Case Diagram
+    li
+        a(href='#new/diagram:class') New Class Diagram
+    li
+        a(href='#new/diagram:sequence') New Sequence Diagram
+    li
+        a(href='#new/diagram:usecase') New Collaboration Diagram
+    li
+        a(href='#new/diagram:usecase') New Statechart Diagram
+    li
+        a(href='#new/diagram:activity') New Activity Diagram
+    li
+        a(href='#new/diagram:deployment') New Deployment Diagram
+
+block body
+  .container
+     h1 Designr
+     p a graphical uml editor
+       #sidebar.three.columns
+
+block body

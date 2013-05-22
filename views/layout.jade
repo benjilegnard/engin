@@ -10,6 +10,7 @@ html(lang='en',ng-app='engin')
     link(href='http://fonts.googleapis.com/css?family=Quicksand|Source+Code+Pro', rel='stylesheet', type='text/css')
     link(rel='stylesheet', href='/css/engin.css')
     link(rel='stylesheet', href='/css/font-awesome.css')
+
   body
 
     #menu.fixed
@@ -19,18 +20,32 @@ html(lang='en',ng-app='engin')
           | Engin
         ul.nav
           li
-            a(href='coder')
+            a(href='#designr')
               i.icon-code
               | Code
           li
-            a(href='fiddler')
-              i.icon-edit
+            a(href='#editor')
+              i.icon-code
               | Edit
           li
-            a(href='writer')
+            a(href='#fiddler')
+              i.icon-edit
+              | Test
+          li
+            a(href='#writer')
               i.icon-cog
               | Review
-    block body
 
+    block toolbar
+    include partials/menu/editor-menu.jade
+
+
+    div.leftpanel(ng-view='sidebar')
+      include partials/comp/folder-tree
+
+    div.container(ng-view='content')
+      block body
+
+    script(src='js/libs/modernizr/modernizr.js')
     block scripts
       script(data-main='/js/engin.js',src='/js/libs/require.js')
