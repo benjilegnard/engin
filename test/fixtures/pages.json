@@ -1,33 +1,33 @@
 {
-    pages:
+    "pages":
     {
-        key:'Engin',
-        url:'#',
-        controller:'HomeController',
-        children:[
+        "key":"Engin",
+        "url":"#",
+        "controller":"HomeController",
+        "children":[
             {
-                key:'Design',
-                url:'#design',
-                controller:'DesignrController',
-                children:[]
+                "key":"Design",
+                "url":"#design",
+                "controller":"DesignrController",
+                "children":[]
             },
             {
-                key:'Coder',
-                url:'#coder',
-                controller:'CoderController',
-                children:[]
+                "key":"Coder",
+                "url":"#coder",
+                "controller":"CoderController",
+                "children":[]
             },
             {
-                key:'Previewr',
-                url:'#preview',
-                controller:'PreviewrController',
-                children:[]
+                "key":"Previewr",
+                "url":"#preview",
+                "controller":"PreviewrController",
+                "children":[]
             },
             {
-                key:'Buildr',
-                url:'#buildr',
-                controller:'BuilderController',
-                children:[]
+                "key":"Buildr",
+                "url":"#buildr",
+                "controller":"BuilderController",
+                "children":[]
             }
         ]
     }
