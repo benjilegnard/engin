@@ -3,15 +3,23 @@ var express = require('express')
     , http = require('http')
     , path = require('path')
     , log4js = require('log4js')
-
-//  , oauth      = require('oauth')
-    , Sequelize = require('sequelize-postgres')
+    , bodyParser = require('body-parser')
+    , errorHandler = require('errorhandler')
+    , cookieParser = require('cookie-parser')
+    , methodOverride= require('method-override')
+    , session = require('express-session')
+    , lessMiddleware = require('less-middleware')
+    , favicon = require('serve-favicon')
+//  , passport      = require('passport')
+    , multer      = require('multer')
+    , Sequelize = require('sequelize')
+    , pg = require('pg')
     , restful = require('sequelize-restful')
     , models = require('./app/models')
     , routes = require('./app/routes')
     , app = require('express')()
-    , server = http.createServer(app);
-//  , io = require('socket.io');
+    , server = http.createServer(app)
+    , io = require('socket.io');
 
 
 log4js.configure({
@@ -21,6 +29,9 @@ log4js.configure({
     ]
 });
 
+
+var logger = log4js.getLogger('engin');
+logger.setLevel('INFO');
 // all environments
 app.set('port', port = process.env.PORT || 5000);
 
@@ -31,27 +42,31 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.engine('jade', require('jade').__express);
 
-//app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(express.cookieParser('your secret here'));
-app.use(express.session());
-app.use(app.router);
-app.use(models);
+app.use(log4js.connectLogger(logger, { level: log4js.levels.INFO }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride());
+app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(cookieParser('your secret here'));
+app.use(session({ resave: true,
+    saveUninitialized: true,
+    secret: 'uwotm8' }));
+app.use(multer());
+//app.use(models);
 //less to css automatic compilatin
-app.use(require('less-middleware')({ src:__dirname + '/public' }));
+app.use(lessMiddleware(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 //static resources
 app.use(express.static(path.join(__dirname, 'public')));
 
 // define all your models before the configure block
-
+/*
 app.configure(function () {
     app.use(restful(Sequelize, {
 
     }))
 });
-
+*/
 
 allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
@@ -59,18 +74,16 @@ allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     return next();
 };
-app.configure('development', function () {
-    app.use(express.errorHandler({
+if ('development' == app.get('env')) {
+    app.use(errorHandler({
         dumpExceptions:true,
         showStach:true
     }));
     //return database_options.logging = true;
-});
-
-app.configure('production', function () {
-    app.use(express.errorHandler());
-    //return database_options.logging = false;
-});
+}
+if ('production' == app.get('env')) {
+    app.use(errorHandler());
+}
 
 //html files
 app.get('/', routes.index);
@@ -92,7 +105,7 @@ app.get('/partial/:name', function (req, res) {
 //resources loaded from bower dir
 app.get('/js/libs/:file', function(req, res){
     var file = req.params.file,
-        filePath = path.join(__dirname,'/bower_components/',file,'.js');
+        filePath = path.join(__dirname,'/app/bower_components/',file,'.js');
     var fileExists =
         fs.exists(
             filePath,
@@ -104,7 +117,7 @@ app.get('/js/libs/:file', function(req, res){
     if (fileExists) {
         res.sendfile('/uploads/' + uid + '/' + file);
     } else {
-        res.send(403, 'Sorry! you cant see that.');
+        res.status(403).send('Sorry! you cant see that.');
     }
 });
 //rest api

@@ -2,7 +2,7 @@
 
     "use strict";
 
-    var Sequelize = require('sequelize-postgres').sequelize
+    var Sequelize = require('sequelize')
         , log4js = require('log4js')
         , sequelize = new Sequelize('engin', 'engin', 'engin', {
             dialect:'postgres', port:5432
